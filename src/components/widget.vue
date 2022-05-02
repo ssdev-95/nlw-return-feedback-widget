@@ -11,14 +11,20 @@ import {
 </script>
 
 <template>
-	<Popover>
-    <PopoverPanel class="flex item-center mx-auto bg-green-500">
-			<h1>LOL</h1>
+	<Popover class="h-100 w-50 bg-surface">
+    <PopoverPanel>
+	    <div>
+		  	<h1 class="text-brand-def">LOL</h1>
+			</div>
     </PopoverPanel>
 
-    <div class="absolute bottom-2 right-8">
-  		<PopoverButton class="flex relative items-center bg-brand-def hover:bg-brand-hover rounded-full text-brand-text px-3 h-11">
-	     	<ph-chat-teardrop-dots class="text-lg" />
+    <div class="fixed bottom-5 right-5">
+  		<PopoverButton class="flex relative items-center bg-brand-def hover:bg-brand-hover rounded-full text-brand-text px-3 h-12 group">
+	     	<ph-chat-teardrop-dots class="h-6 w-6" />
+				<span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 ease-linear">
+			  	<span class="pl-2"></span>
+				  Feedback
+				</span>
   		</PopoverButton>
 		</div>
   </Popover>

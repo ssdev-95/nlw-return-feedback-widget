@@ -10,7 +10,8 @@ module.exports = {
           def: '#8257E5',
           hover: '#996DFF',
           text: '#fff'
-        }
+        },
+				surface: '#0059ad'
       },
       fontFamily: {
         inter: ['Inter', 'Roboto', 'sans']
