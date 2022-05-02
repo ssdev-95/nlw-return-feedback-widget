@@ -17,7 +17,7 @@ import {
     </PopoverPanel>
 
     <div class="absolute bottom-2 right-8">
-  		<PopoverButton class="flex relative items-center bg-violet-500 rounded-full text-white px-3 h-11">
+  		<PopoverButton class="flex relative items-center bg-brand-def hover:bg-brand-hover rounded-full text-brand-text px-3 h-11">
 	     	<ph-chat-teardrop-dots class="text-lg" />
   		</PopoverButton>
 		</div>

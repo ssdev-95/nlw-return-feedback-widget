@@ -4,13 +4,19 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
-		colors: {
-			violet: {
-				500: "#4555ff"
-			},
-			white: "#fff"
-		},
+    extend: {
+      colors: {
+        brand: {
+          def: '#8257E5',
+          hover: '#996DFF',
+          text: '#fff'
+        }
+      },
+      fontFamily: {
+        inter: ['Inter', 'Roboto', 'sans']
+      }
+    },
+		colors: {},
   },
   plugins: [],
 }
