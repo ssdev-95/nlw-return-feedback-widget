@@ -15,7 +15,10 @@ module.exports = {
       },
       fontFamily: {
         inter: ['Inter', 'Roboto', 'sans']
-      }
+      },
+			transitionTimingFunction: {
+				ez: 'cubic-bezier(0.7, 0.7, 0.7, 0.7)'
+			}
     },
 		colors: {},
   },
