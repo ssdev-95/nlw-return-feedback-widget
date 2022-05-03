@@ -11,19 +11,17 @@ import {
 </script>
 
 <template>
-	<Popover class="h-100 w-50 bg-surface">
+	<Popover class="fixed bottom-5 right-5">
     <PopoverPanel as="div" class="flex w-50 bg-green-300 h-12">
 	    <h1 class="text-brand-def">LOL</h1>
     </PopoverPanel>
 
-    <div class="fixed bottom-5 right-5">
-  		<PopoverButton class="flex relative items-center bg-brand-def hover:bg-brand-hover rounded-full text-brand-text px-3 h-12 group">
-	     	<ph-chat-teardrop-dots class="h-6 w-6" />
-				<span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 ease-ezr">
-			  	<span class="pl-2"></span>
-				  Feedback
-				</span>
-  		</PopoverButton>
-		</div>
+  	<PopoverButton class="flex relative items-center bg-brand-def hover:bg-brand-hover rounded-full text-brand-text px-3 h-12 group">
+	   	<ph-chat-teardrop-dots class="h-6 w-6" />
+			<span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 ease-ezr">
+		    <span class="pl-2"></span>
+			  Feedback
+			</span>
+  	</PopoverButton>
   </Popover>
 </template>
