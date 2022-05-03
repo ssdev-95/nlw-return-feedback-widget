@@ -18,9 +18,13 @@ module.exports = {
       },
 			transitionTimingFunction: {
 				ez: 'cubic-bezier(0.7, 0.7, 0.7, 0.7)'
+			},
+			screens: {
+				sm: '315px',
+				md: '860px',
+				lg: '1024px'
 			}
     },
-		colors: {},
   },
   plugins: [],
 }
