@@ -1,4 +1,4 @@
-<script lang="ts" >
+<script setup lang="ts" >
 import { PopoverPanel } from '@headlessui/vue'
 //import { WidgetContentProps } from '../types.d.ts'
 
