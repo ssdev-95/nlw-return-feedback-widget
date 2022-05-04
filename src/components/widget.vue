@@ -3,6 +3,7 @@
 import {
   Popover, PopoverButton
 } from '@headlessui/vue'
+import { PhChatTeardropDots } from "phosphor-vue";
 import WidgetContent from "./widget-content.vue"
 </script>
 
@@ -11,7 +12,7 @@ import WidgetContent from "./widget-content.vue"
     <WidgetContent title="LOL" />
 
   	<PopoverButton class="flex relative items-center bg-brand-def hover:bg-brand-hover rounded-full text-brand-text px-3 h-12 group">
-	   	<ph-chat-teardrop-dots class="h-6 w-6" />
+	   	<PhChatTeardropDots class="h-6 w-6" />
 			<span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 ease-ezr">
 		    <span class="pl-2"></span>
 			  Feedback
