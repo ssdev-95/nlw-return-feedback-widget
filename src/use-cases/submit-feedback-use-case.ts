@@ -13,12 +13,24 @@ interface SubmitFeedbackUseCaseRequest {
 
 export class SubmitFeedbackUseCase {
 	constructor(
-		private repository:FeedbacksRepository
+		private repository:FeedbacksRepository,
 		private adapter:MailAdapter
 	) {}
 
 	async exec(request:SubmitFeedbackUseCaseRequest) {
 		const { type, comments, screenshot, user } = request;
+
+		if (!type) {
+			throw new Error("Type is required hrere");
+		}
+
+		if(!comments) {
+			throw new Error("Comments is required hrere")
+		}
+
+		if(screenshot && !screenshot.startsWith("data:image/png;base64")) {
+			throw new Error("Inavlid image format, not base64");
+		}
 
 		await this.repository.create({
 			type, comments, screenshot, user
