@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { defineProps, ref, Ref } from 'vue'
 import { PopoverButton } from '@headlessui/vue'
-import { PhX, PhCaretDoubleLeft, PhCamera } from 'phosphor-vue'
+import { PhX, PhCaretDoubleLeft } from 'phosphor-vue'
+import CameraButton from './widget-camera-button.vue'
 import {
-  IFeedbackType, WidgetContentProps
+  IFeedbackType, WidgetContentProps, takeScreenshot
 } from '../composables/feedbacks'
 
 interface IFeedbackFormProps {
@@ -15,6 +16,12 @@ const { feedback, reset } = defineProps<IFeedbackFormProps>()
 
 const comment: Ref<string> = ref('')
 const screenshot: Ref<string> = ref('')
+
+function handleShot() {
+  takeScreenshot().then(image => {
+	  screenshot.value = image
+	})
+}
 
 function handleSubmit(e:Event) {
   e.preventDefault()
@@ -51,9 +58,7 @@ function handleSubmit(e:Event) {
 	  placeholder="Tell us whats goin' on.."
 	/>
 	<div class="w-full flex gap-4 justify-center bprder-1 border-brand-text">
-		<button type="button" class="py-3 px-4 flex items-center justify-center rounded-md active:text-[orange] active:bg-[rgba(0,0,0,0.18)] lg:hover:bg-[rgba(0,0,0,0.18)]">
-			<PhCamera class="h-6 w-6" />
-		</button>
+		<CameraButton :handleClick="handleShot" :preview="screenshot.value" />
 		<button
 		  type="submit"
 			:disabled="!comment.length"
