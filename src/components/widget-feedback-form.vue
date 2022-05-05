@@ -4,7 +4,7 @@ import { PopoverButton } from '@headlessui/vue'
 import { PhX, PhCaretDoubleLeft } from 'phosphor-vue'
 import CameraButton from './widget-camera-button.vue'
 import {
-  IFeedbackType, WidgetContentProps, takeScreenshot
+  IFeedbackType, WidgetContentProps, takeScreenshot, hasSentFeedback
 } from '../composables/feedbacks'
 import { darkModeEnabled } from '../composables/theme.ts'
 
@@ -26,7 +26,11 @@ function handleShot() {
 
 function handleSubmit(e:Event) {
   e.preventDefault()
-  alert(comment.value)
+  console.log(comment.value)
+
+	setTimeout(() => {
+		hasSentFeedback.value = true;
+	}, 2000)
 }
 </script>
 

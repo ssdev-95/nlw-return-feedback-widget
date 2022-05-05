@@ -1,3 +1,5 @@
+import { ref, Ref } from 'vue'
+
 import {
 	PhGhost, PhLightbulb, PhWarningOctagon
 } from "phosphor-vue";
@@ -25,6 +27,8 @@ export type WidgetContentProps = {
 	title: string;
 	icon: typeof PhGhost;
 };
+
+export const hasSentFeedback: Ref<boolean> = ref(false)
 
 export async function takeScreenshot() {
 	const canvas = await html2canvas(document.body)

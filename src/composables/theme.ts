@@ -6,5 +6,5 @@ export const darkModeEnabled: Ref<boolean> = ref(false)
 
 export function persistTheme() {
 	const isDarkMode = darkModeEnabled.value ? 1 : 0
-	localStorage.setItem(key, isDarkMode)
+	localStorage.setItem(key, String(isDarkMode))
 }

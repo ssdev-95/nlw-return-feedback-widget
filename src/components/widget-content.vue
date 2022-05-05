@@ -1,10 +1,11 @@
 <script setup lang="ts" >
 import { ref, Ref } from 'vue'
 import { PopoverPanel } from '@headlessui/vue'
+import { IFeedbackType, Feedbacks, hasSentFeedback } from '../composables/feedbacks'
 import FeedbackTypes from './widget-feedback-types.vue'
 import FeedbackForm from './widget-feedback-form.vue'
-import { IFeedbackType, Feedbacks } from '../composables/feedbacks.ts'
-import { darkModeEnabled } from '../composables/theme.ts'
+import FeedbackSent from './widget-finished-step.vue'
+import { darkModeEnabled } from '../composables/theme'
 
 type IFeedebackRef = IFeedbackType | null
 
@@ -22,10 +23,11 @@ function toggleType(type:IFeedebackRef) {
  :class="darkModeEnabled ? 'bg-zinc-900 shadow-white/40 text-brand-text' : 'bg-white shadow-zinc-900/40 text-zinc-600'"
 >
 	<FeedbackForm
-	  v-if="selectedType"
+	  v-if="selectedType && !hasSentFeedback"
 		:feedback="Feedbacks[selectedType]"
 		:reset="toggleType"
 	/>
+	<FeedbackSent v-else-if="hasSentFeedback" />
 	<FeedbackTypes
 		v-else
 		:onClick="toggleType"

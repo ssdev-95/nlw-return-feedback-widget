@@ -5,7 +5,9 @@ import { PhX, PhCheckSquare } from 'phosphor-vue'
 import { Feedbacks, IFeedbackType } from '../composables/feedbacks.ts'
 import { darkModeEnabled } from '../composables/theme.ts'
 
-const { onClick } = defineProps<FeedbackTypeProps>()
+const { onClick } = defineProps<{
+  onClick: (type: IFeedbackType|null) => void;
+}>()
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const { onClick } = defineProps<FeedbackTypeProps>()
 	  weight="fill"
 		class="text-[green] h-10 w-10"
 	/>
-	<p class="text-8 text-bold">Thanks for the feedback!</>
+	<p class="text-8 text-bold">Thanks for the feedback!</p>
   <button
 		class="flex-1 flex flex-col gap-2 rounded-md justify-center items-center py-[2rem]"
 		:class="darkModeEnabled ? 'bg-[rgba(255,255,255,0.05)] text-brand-def' : 'bg-[rgba(5,5,43,0.05)] text-brand-def'"
