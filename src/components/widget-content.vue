@@ -4,6 +4,7 @@ import { PopoverPanel } from '@headlessui/vue'
 import FeedbackTypes from './widget-feedback-types.vue'
 import FeedbackForm from './widget-feedback-form.vue'
 import { IFeedbackType, Feedbacks } from '../composables/feedbacks.ts'
+import { darkModeEnabled } from '../composables/theme.ts'
 
 type IFeedebackRef = IFeedbackType | null
 
@@ -17,7 +18,8 @@ function toggleType(type:IFeedebackRef) {
 <template>
 <PopoverPanel
  as="div"
- class="flex flex-col items-end justify-between w-[calc(100vw-2.5rem)] md:w-80 bg-brand-hover h-80 py-4 mb-8 text-brand-text rounded-xl"
+ class="flex flex-col shadow-lg items-end justify-between w-[calc(100vw-2.5rem)] md:w-80 h-80 py-4 mb-8 rounded-xl"
+ :class="darkModeEnabled ? 'bg-zinc-900 shadow-white/40 text-brand-text' : 'bg-white shadow-zinc-900/40 text-zinc-600'"
 >
 	<FeedbackForm
 	  v-if="selectedType"

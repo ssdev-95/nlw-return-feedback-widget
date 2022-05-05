@@ -9,9 +9,20 @@ module.exports = {
         brand: {
           def: '#8257E5',
           hover: '#996DFF',
-          text: '#fff'
+          text: 'white'
         },
-				surface: '#0059ad'
+				zinc: {
+					900: '#18181B',
+					800: '#27272A',
+					700: '#3F3F46',
+					600: '#52525B',
+					500: '#71717A',
+					400: '#A1A1AA',
+					300: '#D4D4DB',
+					200: '#E4E4E7',
+					100: '#F4F4F5'
+				},
+				white: '#fff'
       },
       fontFamily: {
         inter: ['Inter', 'Roboto', 'sans']

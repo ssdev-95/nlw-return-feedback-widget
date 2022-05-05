@@ -6,6 +6,7 @@ import CameraButton from './widget-camera-button.vue'
 import {
   IFeedbackType, WidgetContentProps, takeScreenshot
 } from '../composables/feedbacks'
+import { darkModeEnabled } from '../composables/theme.ts'
 
 interface IFeedbackFormProps {
 	feedback: WidgetContentProps;
@@ -55,6 +56,7 @@ function handleSubmit(e:Event) {
   <textarea
 		v-model="comment"
 	  class="bg-transparent border-[1px] rounded-md flex-1 w-full border-brand-text placeholder:text-brand-def focus:text-[orange] focus:outline-0 focus:ring-0 focus:border-[orange]"
+		:class="darkModeEnabled ? 'border-brand-def' : 'border-zinc-700'"
 	  placeholder="Tell us whats goin' on.."
 	/>
 	<div class="w-full flex gap-4 justify-center bprder-1 border-brand-text">
@@ -62,7 +64,7 @@ function handleSubmit(e:Event) {
 		<button
 		  type="submit"
 			:disabled="!comment.length"
-			class="flex-1 py-3 bg-[rgba(255,255,255,0.68)] text-brand-def rounded-md disabled:bg-[rgba(0,0,0,0.18)] disabled:text-brand-text disabled:hover:bg-[rgba(0,0,0,0.18)]"
+			class="flex-1 py-3 rounded-md bg-brand-def text-brand-text disabled:opacity-50"
 		>Send feedback</button>
 	</div>
 </form>

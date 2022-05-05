@@ -12,7 +12,7 @@ import WidgetContent from "./widget-content.vue"
 
   	<PopoverButton class="flex relative items-center bg-brand-def hover:bg-brand-hover rounded-full text-brand-text px-3 h-12 group">
 	   	<PhChatTeardropDots class="h-6 w-6" />
-			<span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 ease-ezr">
+			<span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 ease-ez">
 		    <span class="pl-2"></span>
 			  Feedback
 			</span>
