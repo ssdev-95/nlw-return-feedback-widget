@@ -1,34 +1,29 @@
 <script setup lang="ts">
+import { defineProps } from 'vue'
 import { PopoverButton } from '@headlessui/vue'
-import { PhX } from "phosphor-vue"
-//import { FEEDBACKS } from "../types.ts"
+import { PhX } from 'phosphor-vue'
+import { Feedbacks, IFeedbackType } from '../composables/feedbacks.ts'
 
-const FEEDBACKS = {
-	BUG: {
-		title: 'Trouble'
-	},
-	IDEA: {
-		title: 'Idea'
-	},
-	OTHER: {
-		title: 'Other'                          
-	}
+interface FeedbackTypeProps {
+  onClick: (type: IFeedbackType|null) => void;
 }
 
-const keys = Object.keys(FEEDBACKS);
+const keys = Object.keys(Feedbacks);
+const { onClick } = defineProps<FeedbackTypeProps>()
 </script>
 
 <template>
 <header class="flex items-center justify-center w-full h-3 relative">
-	<span>Havin' trouble?</span>
+	<span class="text-bold text-xl">Havin' trouble?</span>
 
 	<PopoverButton class="absolute right-3">
 		<PhX class="h-6 w-6" />
 	</PopoverButton>
 </header>
 <div class="w-full flex gap-4 justify-center px-4">
-  <button class="flex-1 flex items-center bg-brand-hover" v-for="key of keys" :key="key">
-	  <p>{{FEEDBACKS[key].title}}</p>
+  <button class="flex-1 flex flex-col gap-2 rounded-md justify-center items-center py-[2rem] bg-[rgba(255,255,255,0.48)] text-brand-def" v-for="key of keys" :key="key" @click="()=>onClick(key)">
+	  <component :is="Feedbacks[key].icon" class="w-8 h-8" weight="duotone" />
+	  <p>{{Feedbacks[key].title}}</p>
 	</button>
 </div>
 </template>
