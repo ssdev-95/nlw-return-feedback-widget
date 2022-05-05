@@ -27,7 +27,10 @@ function toggleType(type:IFeedebackRef) {
 		:feedback="Feedbacks[selectedType]"
 		:reset="toggleType"
 	/>
-	<FeedbackSent v-else-if="hasSentFeedback" />
+	<FeedbackSent
+		v-else-if="hasSentFeedback"
+		:reset="toggleType"
+	/>
 	<FeedbackTypes
 		v-else
 		:onClick="toggleType"

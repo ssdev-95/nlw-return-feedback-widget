@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import { PhCamera } from 'phosphor-vue'
 
 interface CameraButtonProps {

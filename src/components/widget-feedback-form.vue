@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { defineProps, ref, Ref } from 'vue'
+import { ref, Ref } from 'vue'
 import { PopoverButton } from '@headlessui/vue'
 import { PhX, PhCaretDoubleLeft } from 'phosphor-vue'
 import CameraButton from './widget-camera-button.vue'
 import {
-  IFeedbackType, WidgetContentProps, takeScreenshot, hasSentFeedback
+  IFeedbackType,
+	WidgetContentProps,
+	takeScreenshot,
+	hasSentFeedback
 } from '../composables/feedbacks'
 import { darkModeEnabled } from '../composables/theme.ts'
 

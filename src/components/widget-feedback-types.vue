@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import { PopoverButton } from '@headlessui/vue'
 import { PhX } from 'phosphor-vue'
 import { Feedbacks, IFeedbackType } from '../composables/feedbacks.ts'
