@@ -62,7 +62,7 @@ function handleSubmit(e:Event) {
 <form class="w-full flex flex-col gap-4 h-[calc(100%-5rem)] justify-center px-4" @submit="handleSubmit">
   <textarea
 		v-model="comment"
-	  class="bg-transparent border-[1px] rounded-md flex-1 w-full border-brand-text placeholder:text-brand-def focus:text-[orange] focus:outline-0 focus:ring-0 focus:border-[orange]"
+	  class="bg-transparent border-[1px] rounded-md flex-1 w-full border-brand-text placeholder:text-brand-def focus:text-[orange] focus:outline-0 focus:ring-0 focus:border-[orange] resize-none scrollbar-thumb-zinc-700 scrollbar-track-transparent scrollbar-thin"
 		:class="darkModeEnabled ? 'border-brand-def' : 'border-zinc-700'"
 	  placeholder="Tell us whats goin' on.."
 	/>
