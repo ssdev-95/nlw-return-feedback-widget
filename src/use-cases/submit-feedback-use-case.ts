@@ -1,6 +1,6 @@
 import {
 	FeedbacksRepository
-} from "../repositories/feedbacks-repositories";
+} from "../repositories/feedbacks-repository";
 
 import { MailAdapter } from "../adapters/mail-adapter";
 
