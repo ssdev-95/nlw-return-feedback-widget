@@ -1,4 +1,5 @@
 import { ref, Ref } from 'vue'
+import { api } from './api.ts'
 
 import {
 	PhGhost, PhLightbulb, PhWarningOctagon
@@ -34,4 +35,25 @@ export async function takeScreenshot() {
 	const canvas = await html2canvas(document.body)
 	const base64 = canvas.toDataURL()
 	return base64;
+}
+
+interface IFeedbackResponse {
+	data: { success: boolean }
+}
+
+type ISendFeedbackFunction = (
+	type: IFeedbackType,
+	comment: string,
+	screenshot: string
+) => Promise<boolean>;
+
+export const sendFeedback:ISendFeedbackFunction = async (
+	type, comment, screenshot
+) => {
+	const { data } = await api.post<IFeedbackResponse>(
+		"/feedbacks",
+		{ comment, screenshot, type }
+	)
+
+	return data.success;
 }

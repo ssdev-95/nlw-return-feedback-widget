@@ -7,7 +7,8 @@ import {
   IFeedbackType,
 	WidgetContentProps,
 	takeScreenshot,
-	hasSentFeedback
+	hasSentFeedback,
+	sendFeedback
 } from '../composables/feedbacks'
 import { darkModeEnabled } from '../composables/theme.ts'
 
@@ -24,15 +25,19 @@ const screenshot: Ref<string> = ref('')
 function handleShot() {
   takeScreenshot().then(image => {
 	  screenshot.value = image
-	})
+  })
 }
 
-function handleSubmit(e:Event) {
+async function handleSubmit(e:Event) {
   e.preventDefault()
-  console.log(comment.value)
+	const success = await sendFeedback(
+	  feedback, comment, screenshot
+	).catch(()=>console.log('deu ruim'));
 
 	setTimeout(() => {
-		hasSentFeedback.value = true;
+		if (success) {
+		  hasSentFeedback.value = true;
+		}
 	}, 2000)
 }
 </script>
