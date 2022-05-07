@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 type FeedbackTypes = "BUG" | "IDEA" | "OTHER"
 
 @Entity()
-export class Feedback {
+class Feedback {
 
     @PrimaryGeneratedColumn("uuid")
     id: string
@@ -22,3 +22,5 @@ export class Feedback {
     screenshot?: string | null
 
 }
+
+export { Feedback }

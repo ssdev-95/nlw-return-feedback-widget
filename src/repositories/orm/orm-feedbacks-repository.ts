@@ -1,7 +1,8 @@
 import {
 	FeedbacksRepository, FeedbackCreateData
 } from "../feedbacks-repository";
-import { Feedback, AppDataSource } from '../../data-source';
+import { AppDataSource } from '../../data-source';
+import { Feedback } from '../../entity/Feedback';
 //import { prisma } from "../../prisma";
 
 export class OrmFeedbacksRepository implements FeedbacksRepository {

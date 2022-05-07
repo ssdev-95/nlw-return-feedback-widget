@@ -2,12 +2,15 @@
    "name": "nlw8-node",
    "version": "1.0.0",
    "description": "A simple widget component.",
+	 "type": "module",
    "main": "index.js",
    "scripts": {
       "dev": "ts-node-dev src/server.ts",
       "test": "jest",
       "start": "ts-node src/index.ts",
-      "typeorm": "typeorm-ts-node-commonjs"
+			"typeorm": "ts-node ./node_modules/typeorm/cli.js",
+      "typeorm2": "typeorm-ts-node-esm -d ./src/data-source.ts",
+			"typeorm3": "ts-node --transpile-only node_modules/typeorm/cli.js -d src/data-source.ts"
    },
    "repository": {
       "type": "git",

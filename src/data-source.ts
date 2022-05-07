@@ -4,7 +4,6 @@ import { DataSource } from "typeorm"
 import { Feedback } from "./entity/Feedback"
 
 const DB_VARS = {
-	TYPE: process.env.DB_TYPE || "mysql",
 	HOST: process.env.DB_HOST,
 	PORT: Number(process.env.DB_PORT),
 	USERNAME: process.env.DB_USERNAME,
@@ -26,11 +25,9 @@ const AppDataSource = new DataSource({
     synchronize: true,
     logging: false,
     entities: [ Feedback ],
-    migrations: ["./migration/**.*"],
-    subscribers: [],
-    "cli": {
-        "migrationsDir": DB_VARS.MIGRATION_DIR
-    }
+    migrations: ["./migration/**.ts"],
+    subscribers: []
 })
 
-module.exports = { Feedback, AppDataSource }
+export { AppDataSource }
+
