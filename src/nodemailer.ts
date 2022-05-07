@@ -1,4 +1,4 @@
-import nodemailer "nodemailer";
+import nodemailer  from "nodemailer";
 const DESTINATARY = process.env.MAILER_DESTINATARY ?? '';
 const transport = nodemailer.createTransport({
   host: "smtp.mailtrap.io",
