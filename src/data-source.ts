@@ -29,5 +29,5 @@ const AppDataSource = new DataSource({
     subscribers: []
 })
 
-export { AppDataSource }
+export { AppDataSource, Feedback }
 
