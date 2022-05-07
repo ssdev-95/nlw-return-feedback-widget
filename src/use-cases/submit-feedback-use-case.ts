@@ -6,9 +6,8 @@ import { MailAdapter } from "../adapters/mail-adapter";
 
 interface SubmitFeedbackUseCaseRequest {
 	type: string;
-	comments: string;
+	comment: string;
 	screenshot?: string;
-	user?: string;
 }
 
 export class SubmitFeedbackUseCase {
@@ -18,13 +17,13 @@ export class SubmitFeedbackUseCase {
 	) {}
 
 	async exec(request:SubmitFeedbackUseCaseRequest) {
-		const { type, comments, screenshot, user } = request;
+		const { type, comment, screenshot } = request;
 
 		if (!type) {
 			throw new Error("Type is required hrere");
 		}
 
-		if(!comments) {
+		if(!comment) {
 			throw new Error("Comments is required hrere")
 		}
 
@@ -33,7 +32,7 @@ export class SubmitFeedbackUseCase {
 		}
 
 		await this.repository.create({
-			type, comments, screenshot, user
+			type, comment, screenshot
 		});
 
 		await this.adapter.sendMail({
@@ -41,7 +40,8 @@ export class SubmitFeedbackUseCase {
 			body: [
 				'<div style="font-family:sans-serif; font-size:16px; color:#111;">',                                          
 				`<p>Feedback type: ${type}`,
-				`<p>Feedback comments: ${comments}`,     
+				`<p>Feedback comments: ${comment}`,
+				`<img src="${screenshot}" alt="[${type}] Feedback's screenshot" />`,
 				'</div>'
 			].join("\n")
 		});

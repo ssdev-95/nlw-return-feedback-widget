@@ -1,5 +1,5 @@
 import {  Router, Request, Response } from "express";
-import { prisma } from "./prisma";
+//import { prisma } from "./prisma";
 import { transport, DESTINATARY } from "./nodemailer";
 import { SubmitFeedbackUseCase } from "./use-cases/submit-feedback-use-case";
 import { OrmFeedbacksRepository } from "./repositories/orm/orm-feedbacks-repository";
@@ -10,7 +10,7 @@ const router = Router();
 router.post(
 	'/feedbacks',
 	async (req:Request, res:Response) => {
-		const { type, comments, screenshot, user } = req.body;
+		const { type, comment, screenshot } = req.body;
 		const ormFeedbacksRepository = new OrmFeedbacksRepository();
 		const nodeMailerAdapter = new NodemailerMailAdapter();
 		const feedbackUseCase = new SubmitFeedbackUseCase(
@@ -18,15 +18,22 @@ router.post(
 			nodeMailerAdapter
 		);
 
+		let err: unknown;
 		await feedbackUseCase.exec({
-			type, comments, screenshot, user
+			type, comment, screenshot
+		}).catch(error => {
+			err = error
 		});
 
 		/*const feedback = await prisma.feedback.create({
-			data: { type, comments, screenshot, user	}
+			data: { type, comment, screenshot	}
 		});*/
 
-		return res.status(201).send();
+	 if (err) {
+		 return res.status(666).json({ success: false })
+	 }
+
+		return res.status(201).json({ success: true });
 	}
 )
 

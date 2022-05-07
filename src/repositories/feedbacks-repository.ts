@@ -1,8 +1,7 @@
 export interface FeedbackCreateData {
   type: string;
-	comments: string;
+	comment: string;
 	screenshot?: string;
-	user?: string;
 }
 
 export interface FeedbackCreateReponse extends FeedbackCreateData {

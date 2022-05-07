@@ -14,9 +14,8 @@ describe("Feedback submiting", () => {
 	it('should be able to submit a feedback', async ()=>{
 		await expect(useCase.exec({
 			type: "BUG",
-			comments: "Its getting worse",
-			screenshot: "data:image/png;base64,aisujsjskdkkdkdk",
-			user: "Mixto-Quente"
+			comment: "Its getting worse",
+			screenshot: "data:image/png;base64,aisujsjskdkkdkdk"
 		})).resolves.not.toThrow();
 
 		expect(createFeedbackSpy).toHaveBeenCalled();
@@ -28,9 +27,8 @@ describe("Feedback submiting", () => {
 		 async ()=>{
 			 await expect(useCase.exec({
 				type: "",
-				comments: "Its getting worse",
-				screenshot: "data:image/png;base64aisujsjskdkkdk",  
-				user: "Mixto-Quente"
+				comment: "Its getting worse",
+				screenshot: "data:image/png;base64aisujsjskdkkdk"
 			 })).rejects.toThrow();
 		 }
 	)
@@ -40,9 +38,8 @@ describe("Feedback submiting", () => {
 		async ()=>{
 			await expect(useCase.exec({
 				type: "BUG",
-				comments: "",
-				screenshot: "data:image/png;base64aisujsjskdkkdk",
-				user: "Mixto-Quente"      
+				comment: "",
+				screenshot: "data:image/png;base64aisujsjskdkkdk"  
 			})).rejects.toThrow();
 		} 
 	)
@@ -52,9 +49,8 @@ describe("Feedback submiting", () => {
 		async ()=>{
 			await expect(useCase.exec({
 				type: "BUG",
-				comments: "",
-				screenshot: "aisujsjskdkkdk",
-				user: "Mixto-Quente"
+				comment: "",
+				screenshot: "aisujsjskdkkdk"
 			})).rejects.toThrow();
 		}
 	)
