@@ -50,10 +50,16 @@ type ISendFeedbackFunction = (
 export const sendFeedback:ISendFeedbackFunction = async (
 	type, comment, screenshot
 ) => {
-	const { data } = await api.post<IFeedbackResponse>(
+	console.log({
+		type,
+		comment,
+		screenshot
+  })
+	/*const { data } = await api.post<IFeedbackResponse>(
 		"/feedbacks",
 		{ comment, screenshot, type }
 	)
 
-	return data.success;
+	return data.success;*/
+ retrn true;
 }
