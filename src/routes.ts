@@ -1,5 +1,4 @@
 import {  Router, Request, Response } from "express";
-//import { prisma } from "./prisma";
 import { transport, DESTINATARY } from "./nodemailer";
 import { SubmitFeedbackUseCase } from "./use-cases/submit-feedback-use-case";
 import { OrmFeedbacksRepository } from "./repositories/orm/orm-feedbacks-repository";
@@ -11,6 +10,7 @@ router.post(
 	'/feedbacks',
 	async (req:Request, res:Response) => {
 		const { type, comment, screenshot } = req.body;
+		console.log('routes.ts;',req.body);
 		const ormFeedbacksRepository = new OrmFeedbacksRepository();
 		const nodeMailerAdapter = new NodemailerMailAdapter();
 		const feedbackUseCase = new SubmitFeedbackUseCase(
@@ -24,10 +24,6 @@ router.post(
 		}).catch(error => {
 			err = error
 		});
-
-		/*const feedback = await prisma.feedback.create({
-			data: { type, comment, screenshot	}
-		});*/
 
 	 if (err) {
 		 return res.status(666).json({ success: false })

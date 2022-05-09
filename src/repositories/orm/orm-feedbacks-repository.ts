@@ -9,7 +9,7 @@ export class OrmFeedbacksRepository implements FeedbacksRepository {
 	async create(data:FeedbackCreateData) {
 		const repository = AppDataSource.getRepository(Feedback)
 		const res = await repository.save(data as unknown)
-		console.log(res)
+		//return res;
 		//await prisma.feedback.create({ data });
 	}
 }

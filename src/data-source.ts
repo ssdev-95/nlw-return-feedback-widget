@@ -8,11 +8,7 @@ const DB_VARS = {
 	PORT: Number(process.env.DB_PORT),
 	USERNAME: process.env.DB_USERNAME,
 	PASSWORD: process.env.DB_PASSWORD,
-	DATABASE_URL: process.env.DATABASE_URL,
-	MIGRATION_DIR: path.join(
-	  process.cwd(),
-		"src/migration"
-	)
+	DATABASE: process.env.DATABASE_URL
 }
 
 const AppDataSource = new DataSource({
@@ -21,7 +17,7 @@ const AppDataSource = new DataSource({
     port: DB_VARS.PORT,
     username: DB_VARS.USERNAME,
     password: DB_VARS.PASSWORD,
-    database: DB_VARS.DATABASE_URL,
+    database: DB_VARS.DATABASE,
     synchronize: true,
     logging: false,
     entities: [ Feedback ],
