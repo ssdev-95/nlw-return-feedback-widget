@@ -18,7 +18,10 @@ class Feedback {
     @Column()
     comment: string
 
-    @Column()
+    @Column({
+			type: 'longtext',
+			default: null
+		})
     screenshot?: string | null
 
 }

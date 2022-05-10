@@ -18,7 +18,6 @@ export class SubmitFeedbackUseCase {
 
 	async exec(request:SubmitFeedbackUseCaseRequest) {
 		const { type, comment, screenshot } = request;
-		console.log('submit-feedback-use-case.ts:', request)
 
 		if (!type) {
 			throw new Error("Type is required hrere");

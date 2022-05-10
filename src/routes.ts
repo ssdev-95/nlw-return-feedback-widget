@@ -10,7 +10,6 @@ router.post(
 	'/feedbacks',
 	async (req:Request, res:Response) => {
 		const { type, comment, screenshot } = req.body;
-		console.log('routes.ts;',req.body);
 		const ormFeedbacksRepository = new OrmFeedbacksRepository();
 		const nodeMailerAdapter = new NodemailerMailAdapter();
 		const feedbackUseCase = new SubmitFeedbackUseCase(
