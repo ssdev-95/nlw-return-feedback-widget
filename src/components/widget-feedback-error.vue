@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { PopoverButton } from '@headlessui/vue'
-import { PhX, PhWarningOctagon } from 'phosphor-vue'
+import CloseButton from './widget-close-button.vue'
+import { PhWarningOctagon } from 'phosphor-vue'
 import {
 	Feedbacks,
 	IFeedbackType,
@@ -22,12 +22,7 @@ function onClick() {
 
 <template>
 <header class="flex items-center justify-center w-full h-3 relative">
-	<PopoverButton
-	  class="absolute right-3"
-		@click="onClick"
-	>
-		<PhX class="h-6 w-6" />
-	</PopoverButton>
+	<CloseButton />
 </header>
 <div class="w-full flex flex-col gap-6 justify-center items-center py-4">
   <PhWarningOctagon

@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { PopoverButton } from '@headlessui/vue'
-import { PhX } from 'phosphor-vue'
-import { Feedbacks, IFeedbackType, feedbackStatus } from '../composables/feedbacks.ts'
+import CloseButton from './widget-close-button.vue'
+import {
+  Feedbacks,
+	IFeedbackType,
+	feedbackStatus,
+	toggleType,
+	updateFeedbackStatus
+} from '../composables/feedbacks.ts'
 import { darkModeEnabled } from '../composables/theme.ts'
 
-interface FeedbackTypeProps {
-  onClick: (type: IFeedbackType) => void;
-}
+const keys = Object.keys(Feedbacks) as IFeedbackType[];
 
-const keys = Object.keys(Feedbacks);
-const { onClick } = defineProps<FeedbackTypeProps>()
-
-function handleClick(key) {
-  onClick(key)
-	alert(key)
-	feedbackStatus.value = "EDITING"
+function handleClick(type:IFeedbackType) {
+  //toggleType(type)
+	alert(type)
+	//updateFeedbackStatus("EDITING")
 }
 </script>
 
@@ -22,9 +22,7 @@ function handleClick(key) {
 <header class="flex items-center justify-center w-full h-3 relative">
 	<span class="text-bold text-xl">Havin' trouble?</span>
 
-	<PopoverButton class="absolute right-3">
-		<PhX class="h-6 w-6" />
-	</PopoverButton>
+	<CloseButton />
 </header>
 <div class="w-full flex gap-4 justify-center px-4">
   <button

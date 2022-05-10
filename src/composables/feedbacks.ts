@@ -7,52 +7,41 @@ import {
 
 import html2canvas from "html2canvas"
 
-export const Feedbacks= {
-	BUG: {
-		title: 'Trouble',
-		icon: PhWarningOctagon
-	},
-	IDEA: {
-		title: 'Idea',
-		icon: PhLightbulb
-	},
-	OTHER: {
-		title: 'Other',
-		icon: PhGhost
-	}
+import {
+	Feedbacks,
+	IFeedbackType,
+	IFeedbackStatus,
+	IFeedbackResponse,
+	ISendFeedbackFunction,
+	WidgetContentProps
+} from "./types.ts"
+
+const feedbackStatus:Ref<IFeedbackStatus> = "IDDLING"
+
+const hasSentFeedback: Ref<boolean> = ref(false)
+const screenshot: Ref<strig> = ref('')
+
+function updateFeedbackStatus(status:IFeedbackStatus) {
+	feedbackStatus.value = status
 }
 
-export type IFeedbackType =	keyof typeof Feedbacks;
-export type IFeedbackStatus = "IDDLING" | "EDITING" | "SENT" | "FAILED";
-
-export const feedbackStatus:Ref<IFeedbackStatus> = "EDITING"
-
-export type WidgetContentProps = {
-	title: string;
-	icon: typeof PhGhost;
-};
-
-export const hasSentFeedback: Ref<boolean> = ref(false)
-export const screenshot: Ref<strig> = ref('')
-
-export async function takeScreenshot() {
+async function takeScreenshot() {
 	const canvas = await html2canvas(document.body)
 	const base64 = canvas.toDataURL()
 	screenshot.value = base64
 	return base64;
 }
 
-interface IFeedbackResponse {
-	data: { success: boolean }
+const selectedType: Ref<IFeedbackType> = ref("BUG")
+function toggleType(type:IFeedebackRef) {/*
+	selectedType.value = type ?? "BUG"
+	if(feedbackStatus.value !== "EDITING") {
+	  feedbackStatus.value = "EDITING"          
+  }
+	*/alert(type)
 }
 
-type ISendFeedbackFunction = (
-	type: IFeedbackType,
-	comment: string,
-	screenshot: string
-) => Promise<boolean>;
-
-export const sendFeedback:ISendFeedbackFunction = async (
+const sendFeedback:ISendFeedbackFunction = async (
 	type, comment, screenshot
 ) => {
 	console.log({
@@ -67,4 +56,22 @@ export const sendFeedback:ISendFeedbackFunction = async (
 
 	return data.success;*/
  return true;
+}
+
+export {
+	Feedbacks,
+	IFeedbackType,
+	IFeedbackStatus,                            
+	IFeedbackResponse,                      
+	ISendFeedbackFunction,
+	WidgetContentProps,
+
+	feedbackStatus,
+	hasSentFeedback,
+	screenshot,
+	takeScreenshot,
+	sendFeedback,
+	updateFeedbackStatus,
+	toggleType,
+	selectedType
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, Ref } from 'vue'
-import { PopoverButton } from '@headlessui/vue'
-import { PhX, PhCaretDoubleLeft } from 'phosphor-vue'
+import CloseButton from './widget-close-button.vue'
+import { PhCaretDoubleLeft } from 'phosphor-vue'
 import CameraButton from './widget-camera-button.vue'
 import {
   IFeedbackType,
@@ -69,12 +69,7 @@ async function handleSubmit(e:Event) {
 	  {{Feedbacks[selectedType].title}}
 	</span>
 
-	<PopoverButton
-		class="absolute right-3"
-		@click="handleReset"
-	>
-		<PhX class="h-6 w-6" />
-	</PopoverButton>
+	<CloseButton />
 </header>
 <form class="w-full flex flex-col gap-4 h-[calc(100%-5rem)] justify-center px-4" @submit="handleSubmit">
   <textarea
