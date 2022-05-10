@@ -3,7 +3,6 @@ import { Ref, ref, watch } from 'vue'
 import { PhCamera, PhCircleNotch } from 'phosphor-vue'
 
 interface CameraButtonProps {
-	preview: string;
 	handleClick: () => void;
 }
 const { handleClick:onPress } = defineProps<CameraButtonProps>()

@@ -84,7 +84,7 @@ async function handleSubmit(e:Event) {
 	  placeholder="Tell us whats goin' on.."
 	/>
 	<div class="w-full flex gap-4 justify-center bprder-1 border-brand-text">
-		<CameraButton :handleClick="handleShot" :preview="screenshot.value" />
+		<CameraButton :handleClick="handleShot" />
 		<button
 		  type="submit"
 			:disabled="!comment.length"
