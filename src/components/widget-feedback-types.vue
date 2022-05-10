@@ -1,20 +1,17 @@
 <script setup lang="ts">
 import CloseButton from './widget-close-button.vue'
+import { Feedbacks, IFeedbackType } from "../composables/types"
 import {
-  Feedbacks,
-	IFeedbackType,
-	feedbackStatus,
 	toggleType,
 	updateFeedbackStatus
-} from '../composables/feedbacks.ts'
-import { darkModeEnabled } from '../composables/theme.ts'
+} from '../composables/feedbacks'
+import { darkModeEnabled } from '../composables/theme'
 
 const keys = Object.keys(Feedbacks) as IFeedbackType[];
 
 function handleClick(type:IFeedbackType) {
-  //toggleType(type)
-	alert(type)
-	//updateFeedbackStatus("EDITING")
+  toggleType(type)
+	updateFeedbackStatus("EDITING")
 }
 </script>
 

@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import CloseButton from './widget-close-button.vue'
 import { PhCheckSquare } from 'phosphor-vue'
-import {
+import { updateFeedbackStatus } from '../composables/feedbacks'
+import { 
 	Feedbacks,
-	IFeedbackType,
-	hasSentFeedback
-} from '../composables/feedbacks.ts'
-import { darkModeEnabled } from '../composables/theme.ts'
-
-const { reset } = defineProps<{
-  reset: (type: IFeedbackType|null) => void;
-}>()
+	IFeedbackType
+} from '../composables/types'
+import { darkModeEnabled } from '../composables/theme'
 
 function onClick() {
-	reset()
-	hasSentFeedback.value = false
+	updateFeedbackStatus("IDDLING")
 }
 </script>
 
@@ -31,7 +26,7 @@ function onClick() {
   <button
 		class="w-[75%] flex max-h-[2.5rem] rounded-md justify-center items-center py-[2rem]"
 		:class="darkModeEnabled ? 'bg-[rgba(255,255,255,0.05)] text-brand-text' : 'bg-[rgba(5,5,43,0.05)] text-zinc-700'"
-	  @click="()=>onClick(null)"
+	  @click="onClick"
 	>
 	  <p>Send another feedback</p>
 	</button>

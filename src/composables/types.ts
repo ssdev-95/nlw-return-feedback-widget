@@ -1,4 +1,8 @@
-const Feedbacks = {
+import {
+	PhGhost, PhLightbulb, PhWarningOctagon
+} from "phosphor-vue";
+
+export const Feedbacks = {
 	BUG: {
 		title: 'Trouble',
 		icon: PhWarningOctagon
@@ -13,31 +17,21 @@ const Feedbacks = {
 	}
 }
 
-type IFeedbackType = keyof typeof Feedbacks;
+export type IFeedbackType = keyof typeof Feedbacks;
 
-type IFeedbackStatus = "IDDLING" | "EDITING" | "SENT" | "FAILED";
+export type IFeedbackStatus = "IDDLING" | "EDITING" | "SENT" | "FAILED";
 
-type WidgetContentProps = {
+export type WidgetContentProps = {
 	title: string;
 	icon: typeof PhGhost;
 };
 
-interface IFeedbackResponse {
-	data: { success: boolean }
+export interface IFeedbackResponse {
+	success: boolean;
 }
 
-type ISendFeedbackFunction = (
+export type ISendFeedbackFunction = (
 	type: IFeedbackType,
 	comment: string,
 	screenshot: string
 ) => Promise<boolean>
-
-
-export {
-	Feedbacks,
-	IFeedbackType,
-	IFeedbackStatus,
-	IFeedbackResponse,
-	ISendFeedbackFunction,
-	WidgetContentProps
-}

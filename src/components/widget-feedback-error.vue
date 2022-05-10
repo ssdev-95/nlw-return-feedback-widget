@@ -1,22 +1,14 @@
 <script setup lang="ts">
 import CloseButton from './widget-close-button.vue'
 import { PhWarningOctagon } from 'phosphor-vue'
+import { Feedbacks } from '../composables/types'
 import {
-	Feedbacks,
-	IFeedbackType,
-	hasSentFeedback,
-	feedbackStatus
-} from '../composables/feedbacks.ts'
-import { darkModeEnabled } from '../composables/theme.ts'
-
-const { reset } = defineProps<{
-  reset: (type: IFeedbackType|null) => void;
-}>()
+	updateFeedbackStatus,
+} from '../composables/feedbacks'
+import { darkModeEnabled } from '../composables/theme'
 
 function onClick() {
-	reset(null)
-	hasSentFeedback.value = false
-	feedbackStatus.value = "IDDLING"
+	updateFeedbackStatus("IDDLING")
 }
 </script>
 

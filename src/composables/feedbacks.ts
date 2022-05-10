@@ -1,77 +1,44 @@
 import { ref, Ref } from 'vue'
-import { api } from './api.ts'
-
-import {
-	PhGhost, PhLightbulb, PhWarningOctagon
-} from "phosphor-vue";
+import { api } from './api'
 
 import html2canvas from "html2canvas"
 
 import {
-	Feedbacks,
 	IFeedbackType,
 	IFeedbackStatus,
-	IFeedbackResponse,
 	ISendFeedbackFunction,
-	WidgetContentProps
-} from "./types.ts"
+	IFeedbackResponse
+} from "./types"
 
-const feedbackStatus:Ref<IFeedbackStatus> = "IDDLING"
+export const feedbackStatus: Ref<IFeedbackStatus> = ref("IDDLING")
+export const selectedType: Ref<IFeedbackType> = ref("BUG")
 
-const hasSentFeedback: Ref<boolean> = ref(false)
-const screenshot: Ref<strig> = ref('')
+export const comment: Ref<string> = ref('')
+export const screenshot: Ref<string> = ref('')
 
-function updateFeedbackStatus(status:IFeedbackStatus) {
+export function updateFeedbackStatus(status:IFeedbackStatus) {
 	feedbackStatus.value = status
 }
 
-async function takeScreenshot() {
+export async function takeScreenshot() {
 	const canvas = await html2canvas(document.body)
 	const base64 = canvas.toDataURL()
 	screenshot.value = base64
-	return base64;
 }
 
-const selectedType: Ref<IFeedbackType> = ref("BUG")
-function toggleType(type:IFeedebackRef) {/*
+export function toggleType(type:IFeedbackType) {
 	selectedType.value = type ?? "BUG"
 	if(feedbackStatus.value !== "EDITING") {
 	  feedbackStatus.value = "EDITING"          
   }
-	*/alert(type)
 }
 
-const sendFeedback:ISendFeedbackFunction = async (
+export const sendFeedback:ISendFeedbackFunction = async (
 	type, comment, screenshot
 ) => {
-	console.log({
-		type,
-		comment,
-		screenshot
-  })
-	/*const { data } = await api.post<IFeedbackResponse>(
+	const { data } = await api.post<IFeedbackResponse>(
 		"/feedbacks",
 		{ comment, screenshot, type }
 	)
-
-	return data.success;*/
- return true;
-}
-
-export {
-	Feedbacks,
-	IFeedbackType,
-	IFeedbackStatus,                            
-	IFeedbackResponse,                      
-	ISendFeedbackFunction,
-	WidgetContentProps,
-
-	feedbackStatus,
-	hasSentFeedback,
-	screenshot,
-	takeScreenshot,
-	sendFeedback,
-	updateFeedbackStatus,
-	toggleType,
-	selectedType
+	return data.success;
 }

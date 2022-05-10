@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { Ref, ref, watch } from 'vue'
 import { PhCamera, PhCircleNotch } from 'phosphor-vue'
+import { takeScreenshot } from '../composables/feedbacks'
 
-interface CameraButtonProps {
-	handleClick: () => void;
-}
-const { handleClick:onPress } = defineProps<CameraButtonProps>()
 const isTakingScreenshot:Ref<boolean> = ref(false)
 
 function handlePress() {
-  onPress()
 	isTakingScreenshot.value = true
+	takeScreenshot()
 }
 
 watch(isTakingScreenshot, () => {

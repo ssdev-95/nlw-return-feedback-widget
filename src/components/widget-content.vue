@@ -1,11 +1,12 @@
 <script setup lang="ts" >
 import { PopoverPanel } from '@headlessui/vue'
-import { feedbackStatus } from '../composables/feedbacks.ts'
 
 import FeedbackTypes from './widget-feedback-types.vue'
-/*import FeedbackForm from './widget-feedback-form.vue'
+import FeedbackForm from './widget-feedback-form.vue'
 import FeedbackSent from './widget-finished-step.vue'
-import FeedbackSubmitError from './widget-feedback-error.vue'*/
+import FeedbackSubmitError from './widget-feedback-error.vue'
+
+import { feedbackStatus } from '../composables/feedbacks'
 import { darkModeEnabled } from '../composables/theme.ts'
 </script>
 
@@ -16,6 +17,9 @@ import { darkModeEnabled } from '../composables/theme.ts'
  :class="darkModeEnabled ? 'bg-zinc-900 shadow-white/40 text-brand-text' : 'bg-white shadow-zinc-900/40 text-zinc-600'"
 >
 	<FeedbackTypes v-if="feedbackStatus === 'IDDLING'" />
+	<FeedbackForm v-else-if="feedbackStatus === 'EDITING'" />
+	<FeedbackSent v-else-if="feedbackStatus === 'SENT'" />
+	<FeedbackSubmitError v-else />
 	<footer
 		class="flex items-center justify-center w-full h-3"
 	>
