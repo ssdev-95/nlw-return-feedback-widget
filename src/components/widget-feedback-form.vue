@@ -8,19 +8,27 @@ import {
 	WidgetContentProps,
 	takeScreenshot,
 	hasSentFeedback,
-	sendFeedback
+	sendFeedback,
+	feedbackStatus,
+	Feedbacks,
 } from '../composables/feedbacks'
 import { darkModeEnabled } from '../composables/theme.ts'
 
 interface IFeedbackFormProps {
-	feedback: WidgetContentProps;
-	reset: (type: IFeedbackType|null) => void;
+	selectedType: IFeedbackType;
+	reset: (type: IFeedbackType) => void;
 }
 
-const { feedback, reset } = defineProps<IFeedbackFormProps>()
+const { selectedType, reset } = defineProps<IFeedbackFormProps>()
 
 const comment: Ref<string> = ref('')
 const screenshot: Ref<string> = ref('')
+const feedback = Feedbacks[selectedType]
+
+function handleReset () {
+  reset(null)
+	feedbackStatus.value = "IDDLING"
+}
 
 function handleShot() {
   takeScreenshot().then(image => {
@@ -31,12 +39,13 @@ function handleShot() {
 async function handleSubmit(e:Event) {
   e.preventDefault()
 	/*const success = await sendFeedback(
-	  feedback, comment, screenshot
-	).catch(()=>console.log('deu ruim'));*/
+	  selectedType, comment, screenshot
+	).catch((err)=>console.log(err));*/
 
 	setTimeout(() => {
 	  //if (success) {
 		  hasSentFeedback.value = true;
+			feedbackStatus.value = "SENT"
 		//}
 	}, 2000)
 }
@@ -47,7 +56,7 @@ async function handleSubmit(e:Event) {
   <button
 	  type="button"
 		class="absolute left-3"
-		@click="()=>reset(null)"
+		@click="handleReset"
 	>
 	  <PhCaretDoubleLeft class="h-6 w-6" />
 	</button>
@@ -57,10 +66,13 @@ async function handleSubmit(e:Event) {
 			color="orange"
 			weight="duotone"
 		/>
-	  {{feedback.title}}
+	  {{Feedbacks[selectedType].title}}
 	</span>
 
-	<PopoverButton class="absolute right-3">
+	<PopoverButton
+		class="absolute right-3"
+		@click="handleReset"
+	>
 		<PhX class="h-6 w-6" />
 	</PopoverButton>
 </header>

@@ -23,9 +23,9 @@ export const Feedbacks= {
 }
 
 export type IFeedbackType =	keyof typeof Feedbacks;
-export type IFeedbackStatus = "IDDLING" | "EDITING" | "SENT" | "FAILED"
+export type IFeedbackStatus = "IDDLING" | "EDITING" | "SENT" | "FAILED";
 
-export const feedbackStatus:Ref<IFeedbackStatus> = "IDDLING"
+export const feedbackStatus:Ref<IFeedbackStatus> = "EDITING"
 
 export type WidgetContentProps = {
 	title: string;

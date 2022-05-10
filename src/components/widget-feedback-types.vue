@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import { PopoverButton } from '@headlessui/vue'
 import { PhX } from 'phosphor-vue'
-import { Feedbacks, IFeedbackType } from '../composables/feedbacks.ts'
+import { Feedbacks, IFeedbackType, feedbackStatus } from '../composables/feedbacks.ts'
 import { darkModeEnabled } from '../composables/theme.ts'
 
 interface FeedbackTypeProps {
-  onClick: (type: IFeedbackType|null) => void;
+  onClick: (type: IFeedbackType) => void;
 }
 
 const keys = Object.keys(Feedbacks);
 const { onClick } = defineProps<FeedbackTypeProps>()
+
+function handleClick(key) {
+  onClick(key)
+	alert(key)
+	feedbackStatus.value = "EDITING"
+}
 </script>
 
 <template>
@@ -26,7 +32,7 @@ const { onClick } = defineProps<FeedbackTypeProps>()
 		:class="darkModeEnabled ? 'bg-[rgba(255,255,255,0.05)] text-brand-def' : 'bg-[rgba(5,5,43,0.05)] text-brand-def'"
 		v-for="key of keys"
 		:key="key"
-		@click="()=>onClick(key)"
+		@click="()=>handleClick(key)"
 	>
 	  <component :is="Feedbacks[key].icon" class="w-8 h-8" weight="duotone" />
 	  <p>{{Feedbacks[key].title}}</p>
