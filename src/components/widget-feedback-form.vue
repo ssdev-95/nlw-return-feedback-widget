@@ -30,14 +30,14 @@ function handleShot() {
 
 async function handleSubmit(e:Event) {
   e.preventDefault()
-	const success = await sendFeedback(
+	/*const success = await sendFeedback(
 	  feedback, comment, screenshot
-	).catch(()=>console.log('deu ruim'));
+	).catch(()=>console.log('deu ruim'));*/
 
 	setTimeout(() => {
-		if (success) {
+	  //if (success) {
 		  hasSentFeedback.value = true;
-		}
+		//}
 	}, 2000)
 }
 </script>

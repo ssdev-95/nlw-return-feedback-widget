@@ -23,6 +23,9 @@ export const Feedbacks= {
 }
 
 export type IFeedbackType =	keyof typeof Feedbacks;
+export type IFeedbackStatus = "IDDLING" | "EDITING" | "SENT" | "FAILED"
+
+export const feedbackStatus:Ref<IFeedbackStatus> = "IDDLING"
 
 export type WidgetContentProps = {
 	title: string;
@@ -30,10 +33,12 @@ export type WidgetContentProps = {
 };
 
 export const hasSentFeedback: Ref<boolean> = ref(false)
+export const screenshot: Ref<strig> = ref('')
 
 export async function takeScreenshot() {
 	const canvas = await html2canvas(document.body)
 	const base64 = canvas.toDataURL()
+	screenshot.value = base64
 	return base64;
 }
 
@@ -61,5 +66,5 @@ export const sendFeedback:ISendFeedbackFunction = async (
 	)
 
 	return data.success;*/
- retrn true;
+ return true;
 }
