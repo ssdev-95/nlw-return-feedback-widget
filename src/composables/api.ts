@@ -6,8 +6,5 @@ const config = {
 		"Content-Type": "application/json"
 	}
 }
-//const config = { baseURL: `${process.env.VITE_API_URL}` }
-
-alert(`url: ${config.baseURL}`)
 
 export const api = axios.create(config);

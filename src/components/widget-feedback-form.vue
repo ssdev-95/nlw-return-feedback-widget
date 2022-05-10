@@ -21,11 +21,6 @@ const feedback = Feedbacks[selectedType.value]
 
 async function handleSubmit(e:Event) {
   e.preventDefault()
-	const newFeedback = {
-		comment: comment.value,
-		screenshot: screenshot.value,
-		type: selectedType.value
-	}
 	
 	const success = await sendFeedback(
 	  selectedType.value, 
@@ -33,13 +28,8 @@ async function handleSubmit(e:Event) {
 		screenshot.value
 	).catch((err)=>console.log(err));
 
-	console.log(newFeedback)
-
-
 	setTimeout(() => {
-	  if (success) {
-			updateFeedbackStatus("FAILED")
-		}
+		updateFeedbackStatus(success ? "SENT" : "FAILED")
 	}, 2000)
 }
 </script>
@@ -75,6 +65,7 @@ async function handleSubmit(e:Event) {
 		<CameraButton />
 		<button
 		  type="submit"
+			:disabled="!comment.length"
 			class="flex-1 py-3 rounded-md bg-brand-def text-brand-text disabled:opacity-50"
 		>Send feedback</button>
 	</div>

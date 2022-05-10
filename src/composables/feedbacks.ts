@@ -40,5 +40,6 @@ export const sendFeedback:ISendFeedbackFunction = async (
 		"/feedbacks",
 		{ comment, screenshot, type }
 	)
+
 	return data.success;
 }
