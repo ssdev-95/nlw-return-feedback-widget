@@ -6,15 +6,11 @@ import { Switch } from '@headlessui/vue'
 import Widget from './components/widget.vue'
 import { darkModeEnabled, persistTheme, key } from './composables/theme.ts'
 
-/*onMounted(() => {
+onMounted(() => {
   const isDarkMode = localStorage.getItem(key);
-	const hasTheme = isDarkMode!==undefined||isDarkMode!==null
-	if(hasTheme) {
-		darkModeEnabled.value = Boolean(isDarkMode);
-	} else {
-		darkModeEnabled.value = true;
-	}
-})*/
+	darkModeEnabled.value = !!Number(isDarkMode)
+})
+
 watch(darkModeEnabled, persistTheme)
 </script>
 
